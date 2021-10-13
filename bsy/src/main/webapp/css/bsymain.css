@@ -1,0 +1,147 @@
+body{
+    display: flex;
+    justify-content: center;
+	
+
+}
+
+
+.wrapper{
+	border: 1px solid black;
+	width: 1100px;
+	
+}
+
+
+#head{
+    border:1px solid ;
+    width: 1000px;
+    height: 270px;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    background-image: url("/bsy/images/baek.png");
+    
+}
+
+#navList{
+		justify-content: space-around;
+		align-items: flex-end;
+}
+
+#navList li{
+	list-style: none;
+	float:left;
+	color: white;
+	border: 2px;
+/* 	display: flex; */
+	justify-content: space-around;
+/* 	text-align: center; */
+	align-items: flex-end;
+	margin-right:50px;
+	margin-top: 225px;
+	
+}
+
+.gal{
+	border: 1px solid;
+	margin: 50px;
+	width: 500px;
+	height: 100px;
+	
+}
+
+.gall{
+	border: 1px solid;
+	margin: 50px;
+	width: 500px;
+	height: 100px;
+	
+}
+
+#boardbtn{
+	width: 500px;
+	height: 100px;
+}
+#boardbtnn{
+	width: 500px;
+	height: 100px;
+}
+.block{
+	float : left;
+}
+
+
+.login{
+	margin: 50px;
+	width : 375px;
+	height : 250px;
+	border : 1px solid black;
+	display : flex;
+	flex-direction: column;
+	float : left;
+}
+
+.loginform{
+	margin: 10px;
+	float : left;
+}
+
+.loginbtn{
+	margin: 10px;
+	float : left;
+	width: 64px;
+	height: 64px;
+}
+
+.loginhead{
+	border : 1px solid purple;
+	width: 375px;
+	height: 125px;
+	
+}
+
+#sidee{
+	width: 350px; 
+	height: 80px; 
+	/* border : 1px solid purple; */
+	/* display: inline-block; */
+	margin: 10px;
+	display: flex;
+	justify-content: space-around;
+	border : 1px solid purple;
+}
+
+#sidee1{
+	margin : 8px;
+
+	float: left;
+	
+}
+
+#sidee2{
+	margin : 8px;
+
+	float: left;
+	
+}
+
+#sidee3{
+	margin : 8px;
+	
+	float: left;
+	
+}
+
+.logNav{
+	list-style: none;
+	float: left;
+	/* border : 1px solid grey; */
+}
+
+.logNav > li{
+	list-style: none;
+	float: left;
+	border : 1px solid red;
+}
