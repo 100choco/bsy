@@ -43,7 +43,6 @@
 			</table>
 			
 			<a href="/bsy/insert/insertBoard.jsp">게시글 작성</a>
-			<a href="/bsy/insert/insertUserBoard.jsp">회원 게시글 작성</a>
 			<a href="/bsy/main.jsp">홈으로</a>
 		
 		<jsp:include page="/searchList.jsp"></jsp:include>

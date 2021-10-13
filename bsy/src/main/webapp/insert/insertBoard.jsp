@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,27 +17,36 @@
 	<jsp:include page="/include/bsymainhead.jsp"></jsp:include>
 		<form action="/bsy/insertBoardController" method="get">
 			<table class="table table-striped">
+			
 				<tr> 
 					<td> 제목 :</td>
 					<td><input type="text" name="title" style="width: 758px;"> </td>
 				</tr>
-				
-				
+
 				<tr>
 					<td> 내용 : </td>
 					<td><textarea rows="15" cols="100" style="resize:none;" name="content"></textarea></td>
 				</tr>
+				
 				<tr>
 					<td> 작성자 : </td>
-					<td> <input type="text" name="boardWriter" style="width: 758px;"></td>
+					<c:if test="${id == null }">
+						<td> <input type="text" name="boardWriter" style="width: 758px;"></td>
+					</c:if> 
+					
+					<c:if test="${id != null }">
+						<td> <input type="text" name="boardWriter" style="width: 758px;" value=${id } readonly></td>
+					</c:if>
+					
 				</tr>
+				
 				<tr>
 					<td> 작성비밀번호 : </td>
 					<td> <input type="text" name="boardWriterPassword" style="width: 758px;"></td>
 				</tr>
 			</table>
-		<input type="submit" value="등록하기" onclick="">
-		<button type="button" onclick="history.back(-1);">돌아가기</button>
+		<input type="submit" value="등록하기">
+		<button type="button" onclick="location.href='main.jsp'">돌아가기</button>
 		</form>
 	</div>
 </body>

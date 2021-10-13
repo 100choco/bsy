@@ -13,41 +13,47 @@
 </head>
 <body>
 	<div class="wrapper">
-		<jsp:include page="/include/bsymainhead.jsp"></jsp:include>
-			<form action="signUpController" method="get">
-				<table class="table table-striped">
-					<tr>
-						<td>아이디 : </td><td> <input type="text" name="id" id="id"><button type="button" id="idcbtn">중복확인</button></td>
-					</tr>
-					<tr>
-						<td>비밀번호 : </td><td> <input type="password" name="password" id="password"> </td>
-					</tr>
-					<tr>
-						<td>비밀번호 확인 : </td><td> <input type="password" name="passwordcheck" id="passwordcheck"><button type="button" id="pwcbtn">일치확인</button></td> 
-					</tr>
-					<tr>
-						<td>전화번호 : </td><td colspan="2"> <input type="number" name="phoneNumber" id="phoneNumber" required="required" > </td>
-					</tr>
-					<tr>
-						<td>성별 : </td><td colspan="2"> 남 : <input type="radio" name="gender" value="m" checked="checked" id="genderM" required="required"> 여 : <input type="radio" name="gender" value="f" id="genderF"> </td>
-					</tr>
-					<tr>
-						<td>이메일 : </td><td> <input type="email" name="email" id="email" required="required"> </td>
-					</tr>
-					<tr>
-						<td>생년월일 : </td><td > <input type="date" name="birth" id="birth" required="required"> </td>
-						<td></td>
-					</tr>
-					<tr>
-						<td colspan="2"> <input type="submit" value="가입하기" id="complete"> </td>
-					</tr>
+	<jsp:include page="/include/bsymainhead.jsp"></jsp:include>
+		<div class="row">
+			<div class="col-sm-6">
 				
-				</table>
-		
-		</form>
+					<form action="signUpController" method="get">
+						<table class="table table-striped" id="signUpTable">
+							<tr>
+								<td>아이디 : </td><td> <input type="text" name="id" id="id" placeholder="아이디" style="width: 250px"><button type="button" id="idcbtn">중복확인</button></td><td></td>
+							</tr>
+							<tr>
+								<td>비밀번호 : </td><td> <input type="password" name="password" id="password" placeholder="비밀번호" style="width: 250px"> </td>
+							</tr>
+							<tr>
+								<td>비밀번호 확인 : </td><td> <input type="password" name="passwordcheck" id="passwordcheck" placeholder="비밀번호확인" style="width: 250px"><button type="button" id="pwcbtn">일치확인</button></td><td></td> 
+							</tr>
+							<tr>
+								<td>전화번호 : </td><td colspan="2"> <input type="number" name="phoneNumber" id="phoneNumber" required="required" placeholder="-을 생략하고 기입해주세요" maxlength="11" style="width: 250px"> </td>
+							</tr>
+							<tr>
+								<td>성별 : </td><td colspan="2"> 남 : <input type="radio" name="gender" value="m" checked="checked" id="genderM" required="required"> 여 : <input type="radio" name="gender" value="f" id="genderF"> </td>
+							</tr>
+							<tr>
+								<td>이메일 : </td><td> <input type="email" name="email" id="email" required="required" style="width: 250px" placeholder="이메일"> </td>
+							</tr>
+							<tr>
+								<td>생년월일 : </td><td > <input type="date" name="birth" id="birth" required="required" style="width: 250px"> </td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="2"> <input type="submit" value="가입하기" id="complete"> <button type="button" onclick="location.href='/bsy/main.jsp'">돌아가기</button> </td>
+							</tr>
+						
+						</table>
+				
+				</form>
+				
+			</div>
+		</div>
 	</div>
-	<a href="/bsy/main.jsp">홈으로</a>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 	
 	

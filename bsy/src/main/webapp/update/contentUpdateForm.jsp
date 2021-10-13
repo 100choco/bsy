@@ -7,13 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/bsy/css/bsymain.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 	<div class="wrapper">
 	<jsp:include page="/include/bsymainhead.jsp"></jsp:include>
 		<form action="updateContentController">
-			<table border="1">
+			<table class="table table-striped">
 			<c:forEach var="list" items="${list}">
 				<tr>
 					<td>글 번호 : </td>

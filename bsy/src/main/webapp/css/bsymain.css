@@ -48,7 +48,7 @@ body{
 	border: 1px solid;
 	margin: 50px;
 	width: 500px;
-	height: 100px;
+	height: 300px;
 	
 }
 
@@ -62,7 +62,7 @@ body{
 
 #boardbtn{
 	width: 500px;
-	height: 100px;
+	height: 300px;
 }
 #boardbtnn{
 	width: 500px;
@@ -144,4 +144,10 @@ body{
 	list-style: none;
 	float: left;
 	border : 1px solid red;
+}
+
+.row{
+	 display: flex;
+    justify-content: center;
+	
 }

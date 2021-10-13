@@ -37,6 +37,7 @@ public class UserLoginController extends HttpServlet {
 			System.out.println("=====================>>" + idc);
 			
 			if(idc.equals("success")) {
+				
 				session.setAttribute("id", id);
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
@@ -48,11 +49,24 @@ public class UserLoginController extends HttpServlet {
 			}else if(idc.equals("pwfail")) {
 				System.out.println("비번실패");
 				PrintWriter out = response.getWriter();
-				  out.println("<script>alert('로그인실패');</script>");
-
+				out.println("<script>alert('로그인실패');</script>");
+				
+				/*
+				 * RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
+				 * 
+				 * 
+				 * rd.forward(request, response);
+				 */
+				 out.println("<script>location.href='main.jsp';</script>");
 				
 			}else {
 				System.out.println("실패");
+				
+				 
+				  PrintWriter out = response.getWriter();
+				  out.println("<script>alert('로그인실패');</script>");
+				  out.println("<script>location.href='main.jsp';</script>");
+					
 			}
 			
 			
