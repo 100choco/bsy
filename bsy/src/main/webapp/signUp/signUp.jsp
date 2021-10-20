@@ -20,29 +20,33 @@
 					<form action="signUpController" method="get">
 						<table class="table table-striped" id="signUpTable">
 							<tr>
-								<td>아이디 : </td><td> <input type="text" name="id" id="id" placeholder="아이디" style="width: 250px"><button type="button" id="idcbtn">중복확인</button></td><td></td>
+								<td>아이디 : </td><td> <input type="text" name="id" id="id" placeholder="아이디" minlength ="5" style="width: 250px"><button type="button" id="idcbtn">중복확인</button></td><td></td>
 							</tr>
 							<tr>
 								<td>비밀번호 : </td><td> <input type="password" name="password" id="password" placeholder="비밀번호" style="width: 250px"> </td>
 							</tr>
 							<tr>
-								<td>비밀번호 확인 : </td><td> <input type="password" name="passwordcheck" id="passwordcheck" placeholder="비밀번호확인" style="width: 250px"><button type="button" id="pwcbtn">일치확인</button></td><td></td> 
+								<td>비밀번호 확인 : </td><td> <input type="password" name="passwordcheck" id="passwordcheck" placeholder="비밀번호확인" style="width: 250px"> <label id=""></label></td><td></td>
 							</tr>
+							
 							<tr>
 								<td>전화번호 : </td><td colspan="2"> <input type="number" name="phoneNumber" id="phoneNumber" required="required" placeholder="-을 생략하고 기입해주세요" maxlength="11" style="width: 250px"> </td>
 							</tr>
 							<tr>
 								<td>성별 : </td><td colspan="2"> 남 : <input type="radio" name="gender" value="m" checked="checked" id="genderM" required="required"> 여 : <input type="radio" name="gender" value="f" id="genderF"> </td>
 							</tr>
-							<tr>
-								<td>이메일 : </td><td> <input type="email" name="email" id="email" required="required" style="width: 250px" placeholder="이메일"> </td>
+							<tr >
+								<td>이메일 : </td><td> <input type="email" name="email" id="email" required="required" style="width: 250px;" placeholder="이메일"></td><td></td>
 							</tr>
 							<tr>
-								<td>생년월일 : </td><td > <input type="date" name="birth" id="birth" required="required" style="width: 250px"> </td>
-								<td></td>
+								<td></td><td colspan="3"><label id="lab3"></label></td>
 							</tr>
 							<tr>
-								<td colspan="2"> <input type="submit" value="가입하기" id="complete"> <button type="button" onclick="location.href='/bsy/main.jsp'">돌아가기</button> </td>
+								<td>생년월일 : </td><td > <input type="date" name="birth" id="birth" required="required" style="width: 250px"> </td><td></td>
+								
+							</tr>
+							<tr>
+								<td colspan="2"> <input type="submit" value="가입하기" id="complete"> <button type="button" onclick="location.href='/bsy/main.jsp'">돌아가기</button> </td><td></td>
 							</tr>
 						
 						</table>
@@ -60,6 +64,9 @@
 	$(function () {
 		var pwc = 0;
 		var ppp = false;
+		var emailchk = 0;
+		
+		
 		 $("#pwcbtn").on("click",function(){
 			
 			var pw1 = $("#password").val();
@@ -70,18 +77,34 @@
 				alert("비밀번호를 입력해주세요");
 			}else if(pw1 == pw2){
 				pwc++;
-				alert("비밀번호가 같습니다");
+				alert("비밀번호가 일치합니다");
 			}else if(pw1 != pw2){
 				alert("비밀번호가 다릅니다");
 			}
 		});
-		
+		//emil 확인 체크
+         $("#email").on("keyup", function(){
+            var email = $("#email").val();
+            var check = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/i;
+
+            if(!check.test(email)) {
+               emailchk = 1;
+                   $("#lab3").text("이메일 형식에 맞춰주세요");
+                   $("#lab3").css("color", "red");
+               }else{
+                  emailchk = 0;
+                    $("#lab3").empty();
+                }
+            
+           });
+
 		$("#complete").on("click",function(){
 			var pw1 = $("#password").val();
 			var pw2 = $("#passwordcheck").val();
 			var name = $("#name").val();
 			var email = $("#email").val();
 			var birth = $('#birth').val();
+			var phoneNumber = $('phoneNumber').val()
 			
 			alert(pwc);
 			if(pw1 == pw2 && pwc < 1){
@@ -103,17 +126,21 @@
 			}else if(ppp == false){
 				alert("아이디 중복확인해주세요");
 				event.preventDefault();
+			}else if(phoneNumber == ""){
+				alert("폰번호를 확인해주세요");
+				event.preventDefault();
 			}else{
 				ppp = true;
 				alert("회원가입 완료");
 			}
 
 		}); 
+		
 			$("#idcbtn").click(function() {
-			
+				
 			var id = $("#id").val();
-			
-			$.ajax({					//이 함수를 써서
+			alert(id.length)
+			$.ajax({ 				//이 함수를 써서
 				url : "/bsy/idCheckController",		//어디로 보낸다. 
 				type : "POST",		//포스트 방식으로 밑에꺼를 url로 보낸다.
 				data : {id:id},	//아이디명을 넘기면 벨류값도 넘어간다{name:valuse}

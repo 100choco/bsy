@@ -31,7 +31,7 @@
 				
 				<tr>
 					<td>${list.num}</td>
-					<td><a href="contentReadController?num=${list.num}&views=${list.views}">${list.title}</a></td>
+					<td><a href="contentReadController?num=${list.num}&views=${list.views}">${list.title}<%-- [${ }] --%></a></td>
 					<td>${list.boardWriter}</td>
 					<td>${list.regDate}</td>
 					<td>${list.views}</td>

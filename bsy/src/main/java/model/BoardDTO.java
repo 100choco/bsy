@@ -5,7 +5,6 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private String boardWriter;
-	private String boardWriterPassword;
 	private String regDate;
 	private String views;
 	
@@ -68,13 +67,7 @@ public class BoardDTO {
 		this.boardWriter = boardWriter;
 	}
 	
-	public String getBoardWriterPassword() {
-		return boardWriterPassword;
-	}
-	
-	public void setBoardWriterPassword(String boardWriterPassword) {
-		this.boardWriterPassword = boardWriterPassword;
-	}
+
 	
 	public String getRegDate() {
 		return regDate;
@@ -87,9 +80,10 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		return "BoardDTO [num=" + num + ", title=" + title + ", content=" + content + ", boardWriter=" + boardWriter
-				+ ", boardWriterPassword=" + boardWriterPassword + ", regDate=" + regDate + ", views=" + views + "]";
+				+ ", regDate=" + regDate + ", views=" + views + "]";
 	}
-	
+
+
 	
 	
 	

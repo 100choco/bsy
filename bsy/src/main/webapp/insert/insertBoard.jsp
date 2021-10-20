@@ -40,13 +40,10 @@
 					
 				</tr>
 				
-				<tr>
-					<td> 작성비밀번호 : </td>
-					<td> <input type="text" name="boardWriterPassword" style="width: 758px;"></td>
-				</tr>
+				
 			</table>
 		<input type="submit" value="등록하기">
-		<button type="button" onclick="location.href='main.jsp'">돌아가기</button>
+		<button type="button" onclick="location.href='/bsy/main.jsp'">돌아가기</button>
 		</form>
 	</div>
 </body>

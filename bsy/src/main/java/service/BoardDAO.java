@@ -17,7 +17,7 @@ public class BoardDAO {
 	PreparedStatement pstmt;	
 	ResultSet rs;		
 	
-	public void InsertBoard(String title, String content, String boardWriter, String boardWriterPassword) throws ClassNotFoundException, SQLException {
+	public void InsertBoard(String title, String content, String boardWriter) throws ClassNotFoundException, SQLException {
 		conn = null;	
 		pstmt = null;	
 		
@@ -30,14 +30,13 @@ public class BoardDAO {
 		
 		conn = DriverManager.getConnection(url, dbUser, dbPassword);	
 		
-		String sql = "insert into bsyBoard(title, content, boardWriter, boardWriterPassword) values( ?, ?, ?, ?)";	
+		String sql = "insert into bsyBoard(title, content, boardWriter) values( ?, ?, ?)";	
 		
 		pstmt = conn.prepareStatement(sql);	
 		
 		pstmt.setString(1, title);
 		pstmt.setString(2, content);
 		pstmt.setString(3, boardWriter);
-		pstmt.setString(4, boardWriterPassword);
 		
 		pstmt.executeUpdate();
 
@@ -77,7 +76,6 @@ public class BoardDAO {
 				dto.setNum(rs.getInt("num"));
 				dto.setTitle(rs.getString("title"));
 				dto.setBoardWriter(rs.getString("boardWriter"));
-				dto.setBoardWriterPassword(rs.getString("boardWriterPassword"));
 				dto.setRegDate(rs.getString("regDate"));
 				dto.setViews(rs.getString("views"));
 				
@@ -307,21 +305,15 @@ public class BoardDAO {
 			
 			String sql = "select * from bsyBoard where " + search + " like ? order by num desc";	
 			
-			System.out.println("==============================>>   11  " + search);
+		
 			
 			pstmt = conn.prepareStatement(sql);	
 			
-			System.out.println("==============================>>   22  " + searchKey);
-			System.out.println("==============================>>   !!  " + sql );
-			
-			/* pstmt.setString(1, search); */
+		
 			pstmt.setString(1, '%'+searchKey+'%');
 			
 			
-			System.out.println("==============================>>   33  " + search);
 			rs = pstmt.executeQuery();
-			System.out.println("==============================>>   !!  " + rs );
-			System.out.println("==============================>>   44  " + searchKey);
 			while (rs.next()) {
 				
 				BoardDTO dto = new BoardDTO();

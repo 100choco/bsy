@@ -9,41 +9,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.BoardDAO;
+import service.CommentDAO;
 
-@WebServlet("/insertBoardController")
-public class InsertBoardController extends HttpServlet {
+
+@WebServlet("/commemtInsertController")
+public class CommemtInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
    
-  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String title = request.getParameter("title");	
-		String content = request.getParameter("content");
-		String boardWriter = request.getParameter("boardWriter");
-
-
+		String commentInsert = request.getParameter("commentInsert");
+		String commentWriter = request.getParameter("commentWriter");
+		String num = request.getParameter("num");
+					
 		
+		System.out.println(commentInsert);
+		System.out.println(commentWriter);
 		
-		
-		
+		CommentDAO dao = new CommentDAO();
 		try {
-			BoardDAO dao = new BoardDAO();
-			
-			dao.InsertBoard(title, content, boardWriter);
-			
-			response.sendRedirect("/bsy/main.jsp");
-		} catch (ClassNotFoundException | SQLException e) {
+			dao.commentInsert(commentInsert, commentWriter, num);
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-	
-		
 	}
 
-
 	
-
 }
