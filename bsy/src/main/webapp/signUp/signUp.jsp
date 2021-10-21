@@ -26,7 +26,7 @@
 								<td>비밀번호 : </td><td> <input type="password" name="password" id="password" placeholder="비밀번호" style="width: 250px"> </td>
 							</tr>
 							<tr>
-								<td>비밀번호 확인 : </td><td> <input type="password" name="passwordcheck" id="passwordcheck" placeholder="비밀번호확인" style="width: 250px"> <label id=""></label></td><td></td>
+								<td>비밀번호 확인 : </td><td> <input type="password" name="passwordcheck" id="passwordcheck" placeholder="비밀번호확인" style="width: 250px"> <button type="button" id="pwcbtn" name="pwcbtn">일치확인</button><label id=""></label></td><td>  </td>
 							</tr>
 							
 							<tr>
@@ -86,7 +86,7 @@
          $("#email").on("keyup", function(){
             var email = $("#email").val();
             var check = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/i;
-
+			var numRegex = /[^0-9]{11,11}/g;
             if(!check.test(email)) {
                emailchk = 1;
                    $("#lab3").text("이메일 형식에 맞춰주세요");
@@ -126,7 +126,7 @@
 			}else if(ppp == false){
 				alert("아이디 중복확인해주세요");
 				event.preventDefault();
-			}else if(phoneNumber == ""){
+			}else if(phoneNumber == "" && phoneNumber == null){
 				alert("폰번호를 확인해주세요");
 				event.preventDefault();
 			}else{

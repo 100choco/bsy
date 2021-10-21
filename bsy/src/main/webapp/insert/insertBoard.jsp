@@ -25,7 +25,7 @@
 
 				<tr>
 					<td> 내용 : </td>
-					<td><textarea rows="15" cols="100" style="resize:none;" name="content"></textarea></td>
+					<td><textarea rows="15" cols="100" style="resize:none;" wrap="hard" name="content"></textarea></td>
 				</tr>
 				
 				<tr>

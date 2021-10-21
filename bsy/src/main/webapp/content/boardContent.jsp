@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/bsy/css/bsymain.css" rel="stylesheet" type="text/css">
+<link href="/bsy/css/content.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,36 +19,31 @@
 
 	<div class="wrapper">
 		<jsp:include page="/include/bsymainhead.jsp"></jsp:include>
-			<table border="1" class="table table-striped">
+			<table border="1" style="width: 1090px;">
 			
-				<tr>
-					<td>번호</td>
-					<td>제목</td>
-					<td>내용</td>
-					<td>작성자</td>
-					<td>작성시간</td>
-					<td>조회수</td>	
-					<td>삭제</td>
-					<td>수정</td>
-				</tr>
-				
 				<c:forEach var="list" items="${list}">
 				<tr>
+				<td colspan="14"><h2>${list.title}</h2></td>
+				</tr>
+				<tr>	
+					<td>번호</td>
 					<td><input type="hidden" id="num" value=${list.num }>${list.num}</td>
-					<td>${list.title}</td>
-					<td>${list.content}</td>
+					<td colspan="2">작성자</td>
 					<td><input type="hidden" id="writer" value=${list.boardWriter }>${list.boardWriter}</td>
-					<td>${list.regDate}</td>
-					<td>${list.views+1}</td>
-					<td> <button type="button" id="deletebtn">삭제</button> </td>
-					<td> <button type="button" id="updatebtn">수정</button> </td>
-					<%-- <td><a href="updateContentControllerForm?num=${list.num}" id="updatebtn">수정</a></td> --%>
+					<td>작성시간</td>
+					<td colspan="6">${list.regDate}</td>
+					<td>조회수</td>
+					<td>${list.views+1}</td>	
+				</tr>
+				<tr>
+					<td colspan="14" style="height: 400px;">${list.content}</td>
 				</tr>
 				</c:forEach>
 			
 			</table>
 		<button type="button" onclick="location.href='/bsy/ReadBoardAllController'">돌아가기</button>
-		
+		<button type="button" id="deletebtn">삭제</button>
+		<button type="button" id="updatebtn">수정</button> 
 		
 			<div>
 			
@@ -96,7 +92,8 @@
 			      type : "get",  
 			      data : {commentInsert:commentInsert, commentWriter:commentWriter, num:num},
 			      success : function(data) {          
-			          location.reload();
+			          location.reload();											
+			          
 			          
 			              },
 			      error : function(request, status, error) {
@@ -117,8 +114,6 @@
 	      
 	      var num = $("#num").val();
 	      
-	      
-	      
 	      $.ajax({
 	      url : "/bsy/commemtViewController",   
 	      type : "POST",  
@@ -137,12 +132,43 @@
 	                   var commentContent = data[i].commentContent;  
 	                   var commentRegDate = data[i].commentRegDate.substring(0, 10);  
 	                   var commentDelete = "commentDelete"+commentNum;
-	                    
-	                 tableElement += '<td>'+ commentNum+'</td><td>'+commentWriter+'</td><td id="commentContent">'+commentContent+'</td><td id="commentRegDate">'+commentRegDate+'</td><td id="cde">'+'<a id="'+commentDelete+'"class="btn btn-outline-light text-dark ml-right "  href="#" >삭제하기</a>'+'</td>';
+	     /*141 삭제버튼 마커 <a id="'+commentDelete+'"class="btn btn-outline-light text-dark ml-right "  href="#" >삭제하기</a> */               
+	                 tableElement += '<td>'+ commentNum+'</td><td>'+commentWriter+'</td><td id="commentContent">'+commentContent+'</td><td id="commentRegDate">'+commentRegDate+'</td><td id="cde">'+'<a id="'+commentDelete+'" href="#" >삭제하기</a>'+'</td>';
 	                 tableElement += '</tr>';
-	                 
-	                 
-	               });
+	                
+	                 $(document).on("click","#"+commentDelete ,function() {
+	         			if("${id}" == "admin"){
+	         				
+	         				if(!confirm('정말 삭제하시겠습니까?')){
+	         					alert("취소되었습니다!")
+	         					return false;
+	         					
+	         				}else {
+	         					alert("삭제되었습니다!")
+	         					alert(commentNum);
+	                            location.href='commentDeleteController?commentNum='+commentNum;
+	         					location.reload();
+	                          }
+	         			}else if("${id}" == commentWriter){
+	         				alert(commentWriter);
+	         				if(!confirm('정말 삭제하시겠습니까?')){
+	         					alert("취소되었습니다!")
+	         					return false;
+	         					
+	         				}else {
+	         					alert("삭제되었습니다!")
+	         					alert(commentNum);
+	                            location.href='commentDeleteController?commentNum='+commentNum;
+	         					location.reload();
+	                          }
+	         			}else{
+	         				alert("권한이 없습니다!")
+	         			}
+	         			
+	         			
+	         			
+	         		}); 
+	             });
 	                            
 	               $("#resultTable1").append(tableElement);
 	              
@@ -158,49 +184,24 @@
 
 				
 		
-		$(document).on("click", "#"+idNo, function() {
-	                    
-	                    if(userAd==1){
-	                         if(!confirm('정말 삭제하시겠습니까?')){
-	                             return false;
-	                          }else {
-	                            location.href='#'+bnum+'&cnum='+cnum+'&cwriter='+cwriter;
-	                          }
-
-	                    }else{
-	                        if(userId==cwriter){
-	                             if(!confirm('정말 삭제하시겠습니까?')){
-	                                 return false;
-	                              }else {
-	                                location.href='/minPJ02/CommentDelete?bnum='+bnum+'&cnum='+cnum+'&cwriter='+cwriter;
-	                              }
-	                        }else{
-	                           alert("권한이 없습니다.")
-	                           return false;
-	                        }    
-	                    }
-	                    
-	                  }); 
-		
-		
 			$("#deletebtn").on("click" ,function(){
 				
 				if("${id }" == "admin"){
 					alert("삭제되었습니다!");
 					window.location.href='deleteContentController?num=' + $("#num").val();
-				}else if("${id }" == null){
+						}else if("${id }" == null){
+							alert("권한없음!");
+							event.preventDefault();
+						}{
+				if("${id }" == $("#writer").val()){
+					alert("삭제되었습니다!");
+					window.location.href='deleteContentController?num=' + $("#num").val();
+				}else{
 					alert("권한없음!");
-					event.preventDefault();
-				}{
-					if("${id }" == $("#writer").val()){
-						alert("삭제되었습니다!");
-						window.location.href='deleteContentController?num=' + $("#num").val();
-					}else{
-						alert("권한없음!");
-					}
 				}
+			}
 				 
-			})
+		})
 				
 				$("#updatebtn").on("click" ,function(){
 					
@@ -211,57 +212,11 @@
 							event.preventDefault();
 					}
 					
-				})
+				});
 			
-	 })
-})
-	/* 	function ajax(url = '',
-		            data = {},
-		            method = 'post',
-		            type = 'x-www-form-urlencoded') {
-		
-			console.log(data);
-		
-		
-		  let contentType = undefined;
-		  if(type == "json"){
-		      contentType = "application/json; charset=utf-8";
-		      data = JSON.stringify(data);
-		  }else{
-		      contentType = "application/x-www-form-urlencoded";
-		  }
-		
-		  let res = undefined;
-		  $.ajax({
-		      url : url,
-		      method : method,
-		      async: false,
-		      data : data,
-		      contentType: contentType,
-		      success : function(result){ // ajax 통신 후 가져온 데이터
-		          //console.log("Ajax 결과 -> ");
-		          //console.log(result);
-		          res = result;
-		      },
-		      error: function(e) {
-		          console.error(e);
-		      }
-		  });
-		  return res;
-		}
+	 });
+});
 	
-	function test() {
-		var text1 = $("#text1").val();
-		var text2 = $("#text2").val();
-		var text3 = $("#text3").val();
-		data = {
-				text1:text1,
-				text2:text2,
-				text3:text3
-		}
-		result = ajax('commemtViewController', data, 'post', 'json')
-		console.log(result)
-	} */
 	
 
 	

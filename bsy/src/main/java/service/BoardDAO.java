@@ -21,6 +21,8 @@ public class BoardDAO {
 		conn = null;	
 		pstmt = null;	
 		
+		
+		try {
 		Class.forName("com.mysql.jdbc.Driver");	
 		
 		String url = 
@@ -39,6 +41,13 @@ public class BoardDAO {
 		pstmt.setString(3, boardWriter);
 		
 		pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			conn.close();
+			pstmt.close();
+		}
+		
 
 	}
 	

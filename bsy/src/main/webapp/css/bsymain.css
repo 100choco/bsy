@@ -105,8 +105,6 @@ body{
 #sidee{
 	width: 350px; 
 	height: 80px; 
-	/* border : 1px solid purple; */
-	/* display: inline-block; */
 	margin: 10px;
 	display: flex;
 	justify-content: space-around;
@@ -143,7 +141,7 @@ body{
 .logNav > li{
 	list-style: none;
 	float: left;
-	border : 1px solid red;
+	border : 1px;
 }
 
 .row{

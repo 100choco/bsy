@@ -24,8 +24,7 @@ public class CommemtInsertController extends HttpServlet {
 		String num = request.getParameter("num");
 					
 		
-		System.out.println(commentInsert);
-		System.out.println(commentWriter);
+	
 		
 		CommentDAO dao = new CommentDAO();
 		try {

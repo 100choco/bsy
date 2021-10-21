@@ -65,6 +65,7 @@
 								<c:otherwise>
 									<h4>	${id}님 환영합니다.</h4>
 									<a href="logoutController"> 로그아웃</a>
+									
 								</c:otherwise>
 								
 								</c:choose>
