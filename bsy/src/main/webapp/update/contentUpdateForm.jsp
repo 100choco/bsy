@@ -21,22 +21,24 @@
 			<c:forEach var="list" items="${list}">
 				<tr>
 					<td>글 번호 : </td>
-					<td> <input type="text" name="num" value="${list.num}" readonly="readonly"></td>
+					<td> <input type="text" name="num" value="${list.num}" readonly="readonly" style="width: 758px;"></td>
 				</tr>
 				
 				<tr>
 					<td>제목 : </td>
-					<td> <input type="text" name="title" value="${list.title}"></td>
+					<td> <input type="text" name="title" value="${list.title}" style="width: 758px;"></td>
 				</tr>
 				<tr>
 					<td>내용 :</td>
-					<td><input type="text" name="content" value="${list.content}"></td>
+					<td> <textarea rows="" cols=""name="content"style="width: 758px; height: 350px;">${list.content}</textarea> </td>
+					
 				</tr>
 			
 			</c:forEach>
 				
 			</table>
 			<input type="submit" value="수정하기">
+			<button type="button" onclick="location.href='/bsy/ReadBoardAllController'">돌아가기</button>
 		</form>
 	</div>
 </body>

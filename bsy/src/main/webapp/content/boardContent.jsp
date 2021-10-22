@@ -63,7 +63,7 @@
 				<div>
 					댓글 입력 : <input type="text" id="commentInsert" name="commentInsert">
 					작성자 : <input type="text" id="commentWriter" name="commentWriter" value="${id }" readonly="readonly">
-						<button type="button" id="commentbtn" >bbb</button>	
+						<button type="button" id="commentbtn" >댓글 작성</button>	
 				</div>
 
 			</div>   
@@ -189,19 +189,15 @@
 				if("${id }" == "admin"){
 					alert("삭제되었습니다!");
 					window.location.href='deleteContentController?num=' + $("#num").val();
-						}else if("${id }" == null){
-							alert("권한없음!");
-							event.preventDefault();
-						}{
-				if("${id }" == $("#writer").val()){
-					alert("삭제되었습니다!");
-					window.location.href='deleteContentController?num=' + $("#num").val();
-				}else{
+						}else if("${id }" == $("#writer").val()){
+						alert("삭제되었습니다!");
+						window.location.href='deleteContentController?num=' + $("#num").val();
+						}else if("${id }" != $("#writer").val()){
 					alert("권한없음!");
 				}
-			}
-				 
-		})
+			})
+	 	 
+		
 				
 				$("#updatebtn").on("click" ,function(){
 					

@@ -46,5 +46,6 @@
 		<button type="button" onclick="location.href='/bsy/main.jsp'">돌아가기</button>
 		</form>
 	</div>
+	
 </body>
 </html>
