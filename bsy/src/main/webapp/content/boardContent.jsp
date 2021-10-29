@@ -36,7 +36,7 @@
 					<td>${list.views+1}</td>	
 				</tr>
 				<tr>
-					<td colspan="14" style="height: 400px;">${list.content}</td>
+					<td colspan="14" style="height: 400px; white-space:pre;">${list.content}</td>
 				</tr>
 				</c:forEach>
 			
@@ -94,7 +94,6 @@
 			      success : function(data) {          
 			          location.reload();											
 			          
-			          
 			              },
 			      error : function(request, status, error) {
 			              alert("code:"+request.status);
@@ -125,8 +124,7 @@
 
 	               $.each(data , function(i){
 	            	   
-	            	  
-	                   
+
 	                   var commentNum = data[i].commentNum;  
 	                   var commentWriter = data[i].commentWriter;  
 	                   var commentContent = data[i].commentContent;  
@@ -140,23 +138,24 @@
 	         			if("${id}" == "admin"){
 	         				
 	         				if(!confirm('정말 삭제하시겠습니까?')){
-	         					alert("취소되었습니다!")
+	         					alert("취소되었습니다!");
 	         					return false;
 	         					
 	         				}else {
-	         					alert("삭제되었습니다!")
+	         					alert("삭제되었습니다!");
 	         					alert(commentNum);
 	                            location.href='commentDeleteController?commentNum='+commentNum;
 	         					location.reload();
 	                          }
 	         			}else if("${id}" == commentWriter){
 	         				alert(commentWriter);
+	         				alert("${id}");
 	         				if(!confirm('정말 삭제하시겠습니까?')){
-	         					alert("취소되었습니다!")
+	         					alert("취소되었습니다!");
 	         					return false;
 	         					
 	         				}else {
-	         					alert("삭제되었습니다!")
+	         					alert("삭제되었습니다!");
 	         					alert(commentNum);
 	                            location.href='commentDeleteController?commentNum='+commentNum;
 	         					location.reload();

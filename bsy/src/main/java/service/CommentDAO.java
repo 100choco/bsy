@@ -128,7 +128,6 @@ public class CommentDAO {
 			  
 			  conn = null; 
 			  pstmt = null;
-			  System.out.println("========22==>  " + commentNum);
 		  
 			  Class.forName("com.mysql.jdbc.Driver");
 			  
@@ -136,13 +135,11 @@ public class CommentDAO {
 			  String dbUser = "root"; 
 			  String dbPassword = "rootroot";
 			  conn = DriverManager.getConnection(url, dbUser, dbPassword);
-			  System.out.println("=======33===>  " + commentNum);
 			  String sql =
 			  "delete from comment where commentNum =?";
 			  pstmt = conn.prepareStatement(sql);
 			  
 			  pstmt.setString(1, commentNum);
-			  System.out.println("========44==>  " + commentNum);
 			  pstmt.executeUpdate();
 	}catch(Exception e){
 		  System.out.println(e);

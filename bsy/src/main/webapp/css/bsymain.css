@@ -1,7 +1,7 @@
 body{
     display: flex;
     justify-content: center;
-	
+	margin: 25px;
 
 }
 
@@ -16,12 +16,13 @@ body{
 #head{
     border:1px solid ;
     width: 1000px;
-    height: 270px;
+    height: 200px;
     margin: 50px;
     display: flex;
     justify-content: center;
     align-self: center;
     background-image: url("/bsy/images/baek.png");
+    background-size: 100% 100%;
     
 }
 
@@ -40,7 +41,7 @@ body{
 /* 	text-align: center; */
 	align-items: flex-end;
 	margin-right:50px;
-	margin-top: 225px;
+	margin-top: 160px;
 	
 }
 

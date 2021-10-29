@@ -380,7 +380,6 @@ public class BoardDAO {
 				try {
 					conn = DriverManager.getConnection(url, dbUser, dbPassword);
 					
-					System.out.println("==============================>>   11  ");
 					
 					
 					pstmt = conn.prepareStatement(sql);
@@ -391,8 +390,6 @@ public class BoardDAO {
 					}
 					
 					
-					System.out.println("==============================>>   22  ");
-					System.out.println("==============================>>   !!  ");
 					
 					pstmt.executeQuery();
 					

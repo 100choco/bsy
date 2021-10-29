@@ -27,7 +27,7 @@
 						<td>아이디</td><td> <input type="text" name="id" readonly="readonly" value="${list.id}"> </td>
 					</tr>
 					<tr>
-						<td>비밀번호</td><td> <input type="password" name="password" value="${list.password}"> </td>
+						<td>비밀번호</td><td> <input type="text" name="password" value="${list.password}"> </td>
 					</tr>
 					<tr>
 						<td>휴대폰번호</td><td> <input type="number" name="phoneNumber" value="${list.phoneNumber}"> </td>
@@ -39,7 +39,7 @@
 						<td>이메일</td><td> <input type="text" name="email" value="${list.email}"> </td>
 					</tr>
 					<tr>
-						<td>생년월일</td><td> <input type="text" name="birth" value="${list.birth}"> </td>
+						<td>생년월일</td><td> <input type="date" name="birth" value="${list.birth}" style="width: 189px"> </td>
 					</tr>
 					</c:forEach>	
 		

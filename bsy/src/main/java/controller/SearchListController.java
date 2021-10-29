@@ -20,6 +20,8 @@ import service.BoardDAO;
 public class SearchListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String search = request.getParameter("search");
 		String searchKey = request.getParameter("searchKey");
@@ -33,7 +35,10 @@ public class SearchListController extends HttpServlet {
 		List<BoardDTO> list =dao.searchList(search, searchKey);
 		
 		request.setAttribute("list", list);
-		System.out.println("===============>>   " + list);
+		System.out.println("   ===============>>   " + list);
+		System.out.println("   ===============>>   " + search);
+		System.out.println("   ===============>>   " + searchKey);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/read/readBoard.jsp");
 		
 		rd.forward(request, response);

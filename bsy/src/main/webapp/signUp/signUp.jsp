@@ -20,7 +20,7 @@
 					<form action="signUpController" method="get">
 						<table class="table table-striped" id="signUpTable">
 							<tr>
-								<td>아이디 : </td><td> <input type="text" name="id" id="id" placeholder="아이디" minlength ="5" style="width: 250px"><button type="button" id="idcbtn">중복확인</button></td><td></td>
+								<td>아이디 : </td><td> <input type="text" name="id" id="id" placeholder="아이디" style="width: 250px"><button type="button" id="idcbtn">중복확인</button></td><td></td>
 							</tr>
 							<tr>
 								<td>비밀번호 : </td><td> <input type="password" name="password" id="password" placeholder="비밀번호" style="width: 250px"> </td>
@@ -30,7 +30,7 @@
 							</tr>
 							
 							<tr>
-								<td>전화번호 : </td><td colspan="2"> <input type="number" name="phoneNumber" id="phoneNumber" required="required" placeholder="-을 생략하고 기입해주세요" maxlength="11" style="width: 250px"> </td>
+								<td>전화번호 : </td><td colspan="2"> <input type="text" name="phoneNumber" id="phoneNumber" required="required" placeholder="번호 11자리를 입력해주세요" maxlength="11" style="width: 250px"> </td>
 							</tr>
 							<tr>
 								<td>성별 : </td><td colspan="2"> 남 : <input type="radio" name="gender" value="m" checked="checked" id="genderM" required="required"> 여 : <input type="radio" name="gender" value="f" id="genderF"> </td>
@@ -42,7 +42,7 @@
 								<td></td><td colspan="3"><label id="lab3"></label></td>
 							</tr>
 							<tr>
-								<td>생년월일 : </td><td > <input type="date" name="birth" id="birth" required="required" style="width: 250px"> </td><td></td>
+								<td>생년월일 : (선택)</td><td > <input type="date" name="birth" id="birth" style="width: 250px"> </td><td></td>
 								
 							</tr>
 							<tr>
@@ -57,16 +57,30 @@
 		</div>
 	</div>
 	
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 	
 	
 	$(function () {
 		var pwc = 0;
-		var ppp = false;
+		var idchk = false;
 		var emailchk = 0;
+		var numRegex = /^01([0-9]{11})$/;
 		
 		
+		
+		
+		
+		/* $("#testBtn").on("click",function(){
+			alert('a')
+			var phoneNumber = $('#phoneNumber').val()
+			if(/^[0-9]{11}/.test(phoneNumber)==true){
+				alert('성공');
+			} 
+		}) */
+		
+		/* 비밀번호 일치확인 */
 		 $("#pwcbtn").on("click",function(){
 			
 			var pw1 = $("#password").val();
@@ -82,20 +96,20 @@
 				alert("비밀번호가 다릅니다");
 			}
 		});
+		
 		//emil 확인 체크
          $("#email").on("keyup", function(){
             var email = $("#email").val();
             var check = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/i;
-			var numRegex = /[^0-9]{11,11}/g;
             if(!check.test(email)) {
                emailchk = 1;
                    $("#lab3").text("이메일 형식에 맞춰주세요");
                    $("#lab3").css("color", "red");
                }else{
                   emailchk = 0;
-                    $("#lab3").empty();
+                    $("#lab3").text("알맞은 형식의 이메일입니다.");
+                    $("#lab3").css("color", "blue");
                 }
-            
            });
 
 		$("#complete").on("click",function(){
@@ -104,70 +118,78 @@
 			var name = $("#name").val();
 			var email = $("#email").val();
 			var birth = $('#birth').val();
-			var phoneNumber = $('phoneNumber').val()
-			
+			var phoneNumber = $('#phoneNumber').val();
+
 			alert(pwc);
 			if(pw1 == pw2 && pwc < 1){
 				alert("비밀번호확인체크를 해주세요");
 				event.preventDefault();
-				ppp = false;
+				
 			}else if (email = ""){
 				alert("이메일을 확인해 주세요");
 				event.preventDefault();
-				ppp = false;
+				
 			}else if(pw1 == "" || pw2== ""){
 				alert("비밀번호 공백을 확인해 주세요");
 				event.preventDefault();
-				ppp = false;
+				
 			}else if(pw1 != pw2){
 				alert("비밀번호를 일치하게 해주세요");
 				event.preventDefault();
-				ppp = false;
-			}else if(ppp == false){
+				
+			}else if(idchk == false){
 				alert("아이디 중복확인해주세요");
+				idchk = false;
 				event.preventDefault();
+				
+				/* 전화번호 11자리와 숫자만 사용 */
 			}else if(phoneNumber == "" && phoneNumber == null){
 				alert("폰번호를 확인해주세요");
 				event.preventDefault();
+			}else if(/^[0-9]{11}/.test(phoneNumber)==false){
+				alert("전화번호 11자리를 확인해주세요");	
+				event.preventDefault();
+				
+			}else if(emailchk == 1){
+				alert("이메일 양식에 맞춰주세요");	
+				
+				event.preventDefault();
 			}else{
-				ppp = true;
+				idchk = true;
 				alert("회원가입 완료");
 			}
 
 		}); 
 		
+		/* 아이디 중복검사 */
 			$("#idcbtn").click(function() {
 				
 			var id = $("#id").val();
 			alert(id.length)
-			$.ajax({ 				//이 함수를 써서
-				url : "/bsy/idCheckController",		//어디로 보낸다. 
-				type : "POST",		//포스트 방식으로 밑에꺼를 url로 보낸다.
-				data : {id:id},	//아이디명을 넘기면 벨류값도 넘어간다{name:valuse}
-				success : function(data) {	//결과값은 데이타에 담긴다.
+			$.ajax({ 														//이 함수를 써서
+				url : "/bsy/idCheckController",										//어디로 보낸다. 
+				type : "POST",										//포스트 방식으로 밑에꺼를 url로 보낸다.
+				data : {id:id},										//아이디명을 넘기면 벨류값도 넘어간다{name:valuse}
+				success : function(data) {							//결과값은 데이타에 담긴다.
 		
 				if(data == 1){
 					alert("아이디가 중복됩니다.");
-					return ppp=false;
+					return idchk=false;
 				}else if(data == 2){
 					alert("아이디를 입력해 주세요");
-					return ppp=false;
+					return idchk=false;
 				}else if(data == 0){
 					alert("사용가능한아이디입니다.");
-					return ppp=true;
+					return idchk=true;
 				}
-				
 				
 				},
 				error : function (request, status, error) {
 					alert("에러");
-					alert("code:"+request.status);
-					
-					
+					alert("code:"+request.status);	
 				}
-			
+				
 			})
-			
 			
 		});
 		

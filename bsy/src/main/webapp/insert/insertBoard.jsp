@@ -20,12 +20,12 @@
 			
 				<tr> 
 					<td> 제목 :</td>
-					<td><input type="text" name="title" style="width: 758px;"> </td>
+					<td><input type="text" name="title" style="width: 758px;" id="title"> </td>
 				</tr>
 
 				<tr>
 					<td> 내용 : </td>
-					<td><textarea rows="15" cols="100" style="resize:none;" wrap="hard" name="content"></textarea></td>
+					<td><textarea rows="15" cols="100" style="resize:none;" wrap="hard" name="content" id="content"></textarea></td>
 				</tr>
 				
 				<tr>
@@ -46,6 +46,10 @@
 		<button type="button" onclick="location.href='/bsy/main.jsp'">돌아가기</button>
 		</form>
 	</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
 	
+	
+	</script>
 </body>
 </html>
