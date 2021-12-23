@@ -63,7 +63,8 @@
 				<div>
 					댓글 입력 : <input type="text" id="commentInsert" name="commentInsert">
 					작성자 : <input type="text" id="commentWriter" name="commentWriter" value="${id }" readonly="readonly">
-						<button type="button" id="commentbtn" >댓글 작성</button>	
+						<button type="button" id="commentbtn" >댓글 작성</button>
+							
 				</div>
 
 			</div>   
@@ -143,23 +144,14 @@
 	         					
 	         				}else {
 	         					alert("삭제되었습니다!");
-	         					alert(commentNum);
 	                            location.href='commentDeleteController?commentNum='+commentNum;
-	         					location.reload();
+	         					
 	                          }
 	         			}else if("${id}" == commentWriter){
 	         				alert(commentWriter);
 	         				alert("${id}");
-	         				if(!confirm('정말 삭제하시겠습니까?')){
-	         					alert("취소되었습니다!");
-	         					return false;
-	         					
-	         				}else {
-	         					alert("삭제되었습니다!");
-	         					alert(commentNum);
-	                            location.href='commentDeleteController?commentNum='+commentNum;
-	         					location.reload();
-	                          }
+	         				location.href='commentDeleteController?commentNum='+commentNum;
+	         				
 	         			}else{
 	         				alert("권한이 없습니다!")
 	         			}

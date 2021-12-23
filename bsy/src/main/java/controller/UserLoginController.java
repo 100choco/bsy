@@ -51,12 +51,7 @@ public class UserLoginController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인실패');</script>");
 				
-				/*
-				 * RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
-				 * 
-				 * 
-				 * rd.forward(request, response);
-				 */
+			
 				 out.println("<script>location.href='main.jsp';</script>");
 				
 			}else {

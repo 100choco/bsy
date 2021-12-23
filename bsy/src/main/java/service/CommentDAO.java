@@ -24,7 +24,6 @@ public class CommentDAO {
 	
 	public List<CommentDTO> CommentList(int boardNum) {
 		   List<CommentDTO> commentList= new ArrayList<CommentDTO>();
-		      
 		   
 		      try{
 		    	    conn = null;	
@@ -128,7 +127,9 @@ public class CommentDAO {
 			  
 			  conn = null; 
 			  pstmt = null;
-		  
+			  
+			  int num = Integer.parseInt(commentNum);
+			  System.out.println("DAO¡¯¿‘");
 			  Class.forName("com.mysql.jdbc.Driver");
 			  
 			  String url = "jdbc:mysql://localhost:3306/bsy?useSSL=false"; 
@@ -139,7 +140,7 @@ public class CommentDAO {
 			  "delete from comment where commentNum =?";
 			  pstmt = conn.prepareStatement(sql);
 			  
-			  pstmt.setString(1, commentNum);
+			  pstmt.setInt(1, Integer.parseInt(commentNum));
 			  pstmt.executeUpdate();
 	}catch(Exception e){
 		  System.out.println(e);

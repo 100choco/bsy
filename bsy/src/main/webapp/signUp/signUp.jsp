@@ -120,7 +120,7 @@
 			var birth = $('#birth').val();
 			var phoneNumber = $('#phoneNumber').val();
 
-			alert(pwc);
+			
 			if(pw1 == pw2 && pwc < 1){
 				alert("비밀번호확인체크를 해주세요");
 				event.preventDefault();
@@ -165,7 +165,7 @@
 			$("#idcbtn").click(function() {
 				
 			var id = $("#id").val();
-			alert(id.length)
+			
 			$.ajax({ 														//이 함수를 써서
 				url : "/bsy/idCheckController",										//어디로 보낸다. 
 				type : "POST",										//포스트 방식으로 밑에꺼를 url로 보낸다.

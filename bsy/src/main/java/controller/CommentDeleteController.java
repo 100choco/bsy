@@ -19,13 +19,14 @@ public class CommentDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String commentNum = request.getParameter("commentNum");
-		
+		System.out.println("컨트롤러 진입");
 		CommentDAO dao = new CommentDAO();
 		
 		try {
 			
 			dao.commentDelete(commentNum);
-			
+			System.out.println("DAO탈출");
+			response.sendRedirect("/bsy/main.jsp");
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
